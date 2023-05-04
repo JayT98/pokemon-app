@@ -16,10 +16,23 @@ body {
 }
 
 .pokemon-app > h1 {
+    position: relative;
+    text-align: center;
     font-size: 4rem;
-    margin: 1rem 0 2rem;
-    padding-left: 1rem;
+    margin: 1rem 0 4rem;
     color: #444;
+}
+
+.pokemon-app > h1::after{
+    content: "";
+    position: relative;
+    display: block;
+    width: 4em;
+    height: 6px;
+    background-color: #FB6C6C;
+    top: 100%;
+    left: 50%;
+    margin-left: -2em;
 }
 
 /* 
@@ -78,7 +91,7 @@ body {
     position: relative;
     width: 10em;
     padding-bottom: 10em;
-    border: 4rem solid currentColor;
+    border: 3rem solid currentColor;
     clip-path: polygon( 
         0 0, 0 40%, 50% 40%, 50% 60%, 0 60%, 0 100%, 100% 100%, 100% 60%, 50% 60%, 50% 40%, 100% 40%, 100% 0 
         );
