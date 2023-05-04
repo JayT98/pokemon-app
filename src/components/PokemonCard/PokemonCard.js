@@ -1,8 +1,7 @@
 import React from "react";
 import "./PokemonCard.css";
 
-function PokemonCard({pokemon: {name, id, sprites, types}})
-{
+function PokemonCard({ pokemon: { name, id, sprites, types } }) {
     // get pokemon image
     const pokemonImage = sprites.other["official-artwork"].front_default;
 
@@ -10,29 +9,33 @@ function PokemonCard({pokemon: {name, id, sprites, types}})
     const styleClass = types.map((t) => "type-" + t.type.name).join(" ");
 
     // pad pokemon id with zeros
-    const pokemonId = '#' + id.toString().padStart(3, "0");
-    
+    const pokemonId = "#" + id.toString().padStart(3, "0");
+
     // render pokemon card
     return (
         <div className="pokemonCard-container">
             <div className={`pokemonCard ${styleClass}`}>
+                <div className="bg-pokeball"></div>
+                <span className="pokemon-id">{pokemonId}</span>
                 <div className="pokemonCard-title">
                     <h2>{name}</h2>
 
                     <div className="pokemon-types">
-                        {
-                            types.map((t, i) => {
-                                return <span className="type" key={i}>{t.type.name}</span>
-                            })
-                        }
+                        {types.map((t, i) => {
+                            return (
+                                <span className="type" key={i}>
+                                    {t.type.name}
+                                </span>
+                            );
+                        })}
                     </div>
                 </div>
-                
-                <img alt={name} src={pokemonImage} />
 
-                <span className="pokemon-id">{pokemonId}</span>
+                <div className="pokemon-image">
+                    <img alt={name} src={pokemonImage} />
+                </div>
             </div>
         </div>
-    )
+    );
 }
 export default PokemonCard;
