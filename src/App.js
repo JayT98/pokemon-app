@@ -28,11 +28,6 @@ function App() {
                     // fetch pokemon data
                     await fetchPokemonData(pokemon.name).then(async (json) => {
                         await setPokemons((prevState) => [...prevState, json]);
-                        // await setPokemons((prev) => {
-                        //     let tmp = prev.slice();
-                        //     tmp[json.order] = json;
-                        //     return tmp;
-                        // });
                     });
                 })
             );
