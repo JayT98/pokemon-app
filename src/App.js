@@ -22,7 +22,7 @@ function App() {
 
         //fetch first original 151 pokemons
         fetchPokemons(151).then(async ({ results }) => {
-            //iterate over each pokemon and add to array
+            //iterate over each pokemon and add to array (Promise only working with results.map)
             await Promise.all(
                 results.map(async(pokemon) => {
                     // fetch pokemon data

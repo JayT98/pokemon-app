@@ -104,3 +104,15 @@ body {
     padding-bottom: 6em;
     background-color: currentColor;
 }
+
+/* 
+    Animations
+*/
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
