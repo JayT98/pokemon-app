@@ -27,6 +27,7 @@
     z-index: 1;
     margin-top: -40px;
     pointer-events: none;
+    cursor: auto;
 }
 
 .details-view-container .pokemonCard-container .pokemonCard {
