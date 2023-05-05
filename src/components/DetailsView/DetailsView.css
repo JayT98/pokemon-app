@@ -49,7 +49,7 @@
 }
 
 @media screen and (max-width: 800px){
-    .details-view-container .pokemonCard {
-        justify-content: flex-start;
+    .details-view-container .pokemonCard .pokemonCard-title{
+        align-self: center;
     }
 }
