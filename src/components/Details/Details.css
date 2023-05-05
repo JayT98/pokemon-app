@@ -76,6 +76,13 @@
 
 .details-container .tab table td:nth-child(2) {
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details-container .tab table td:nth-child(2) .range-view {
+    width: 90%;
 }
 
 .details-container .tab-evolution .evolution-container{
