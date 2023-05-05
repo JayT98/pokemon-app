@@ -34,11 +34,11 @@ function App() {
                         //     i,
                         //     json,
                         // ]);
-                        await setPokemons(prevState => {
-                          let tmp = prevState.slice();
-                          tmp[i] = json;
-                          return tmp;
-                        })
+                        await setPokemons((prevState) => {
+                            let tmp = prevState.slice();
+                            tmp[i] = json;
+                            return tmp;
+                        });
                     });
                 })
             );
@@ -52,7 +52,10 @@ function App() {
             {
                 // if a pokemon is selected, show details view
                 selectedPokemon !== -1 && (
-                    <DetailsView pokemon={pokemons[selectedPokemon]} />
+                    <DetailsView
+                        pokemon={pokemons[selectedPokemon]}
+                        setSelectedPokemon={setSelectedPokemon}
+                    />
                 )
             }
             {isLoading ? (
