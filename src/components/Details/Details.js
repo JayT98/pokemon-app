@@ -4,13 +4,12 @@ import BaseStats from './Tabs/BaseStats';
 import Evolution from './Tabs/Evolution';
 import './Details.css';
 
-function Details({pokemon})
+function Details({ pokemon })
 {
     const [tab, setTab] = useState('about');
 
     // get pokemon image from URL
-    const sprites = pokemon.sprites?.other;
-    const imageURL = sprites?.dream_world.front_default;
+    const imageURL = pokemon.sprites.other.dream_world.front_default;
 
     // handle tab switching
     const switchTab = (e) => {

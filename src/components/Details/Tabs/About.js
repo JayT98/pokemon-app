@@ -2,10 +2,10 @@ import React from "react";
 
 function About({ pokemon }) {
     // Join types names into a string
-    const types = pokemon.types?.map((t) => t.type.name).join(", ");
+    const types = pokemon.types.map((t) => t.type.name).join(", ");
 
     // Join abilities names into a string
-    const abilities = pokemon.abilities?.map((a) => a.ability.name).join(", ");
+    const abilities = pokemon.abilities.map((a) => a.ability.name).join(", ");
 
     // calculate pokemon height in cm
     const height = pokemon.height * 10;

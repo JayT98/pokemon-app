@@ -11,10 +11,12 @@ function Evolution({ pokemon }) {
             setEvolutionChain([]);
             setCurrentEvolution(data.chain);
         });
+        // eslint-disable-next-line
     }, [pokemon]);
 
     useEffect(() => {
         getNextEvolution();
+        // eslint-disable-next-line
     }, [currentEvolution]);
 
     const getNextEvolution = () => {
@@ -67,7 +69,7 @@ function Evolution({ pokemon }) {
 
     return (
         <div className="tab tab-evolution">
-            <h2>Evolution</h2>
+            <h2>Evolution Chain</h2>
             {evolutionChain.length === 0 && (
                 <div>This pokemon does not evolve.</div>
             )}
@@ -77,7 +79,7 @@ function Evolution({ pokemon }) {
                 evolutionChain.map((e, i) => {
                     return (
                         <div className="evolution-container" key={i}>
-                            <div className="evolution-container evolve-from">
+                            <div className="evolve-container evolve-from">
                                 <div className="image-container">
                                     <div className="bg-pokeball"></div>
                                     <img alt={e.current} src={e.currentImage} />
@@ -91,7 +93,7 @@ function Evolution({ pokemon }) {
                                 Level {e.level}
                             </div>
 
-                            <div className="evolution-container evolve-to">
+                            <div className="evolve-container evolve-to">
                                 <div className="image-container">
                                     <div className="bg-pokeball"></div>
                                     <img alt={e.next} src={e.nextImage} />

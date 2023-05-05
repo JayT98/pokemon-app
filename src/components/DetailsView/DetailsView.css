@@ -8,14 +8,14 @@
     flex-direction: column;
     justify-content: flex-end;
     position: fixed;
-    z-index: 999999;
+    z-index: 99999;
     background-color: #FFF;
     border-radius: 3rem;
     animation: .3s pull-up-center both ease-out;
 }
 
-.details-view-container .hidden{
-    animation: .3s push-down-center both ease-out;
+.details-view-container.hidden{
+    animation: .3s pull-down-center both ease-out;
 }
 
 .details-view-container .pokemonCard-container {
@@ -30,22 +30,26 @@
     cursor: auto;
 }
 
-.details-view-container .pokemonCard-container .pokemonCard {
+.details-view-container .pokemonCard {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding-bottom: 25vmin;
-    padding-top:5vmin;
+    padding-top: 5vmin;
+}
+
+.details-view-container .pokemonCard .pokemonCard-title span.type{
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .details-view-container
-.pokemonCard-container
 .pokemonCard
 .pokemon-image {
     display: none;
 }
 
 @media screen and (max-width: 800px){
-    .details-view-container .pokemonCard-container .pokemonCard {
+    .details-view-container .pokemonCard {
         justify-content: flex-start;
     }
 }

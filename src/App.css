@@ -98,7 +98,8 @@ body {
 /* 
     Background Pokemon decoration
 */
-.bg-pokeball {
+.bg-pokeball 
+{
     position: absolute;
     display: flex;
     align-items: center;
@@ -120,7 +121,7 @@ body {
     position: relative;
     width: 10em;
     padding-bottom: 10em;
-    border: 3rem solid currentColor;
+    border: 6em solid currentColor;
     clip-path: polygon(
         0 0,
         0 40%,
@@ -140,8 +141,8 @@ body {
 .bg-pokeball::after {
     content: "";
     position: absolute;
-    width: 6em;
-    padding-bottom: 6em;
+    width: 5em;
+    padding-bottom: 5em;
     background-color: currentColor;
 }
 
