@@ -14,6 +14,10 @@
     animation: .3s pull-up-center both ease-out;
 }
 
+.details-view-container .hidden{
+    animation: .3s push-down-center both ease-out;
+}
+
 .details-view-container .pokemonCard-container {
     margin: 0;
     padding: 0;

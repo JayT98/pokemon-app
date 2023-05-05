@@ -2,10 +2,9 @@ import React from "react";
 
 function BaseStats({ stats }) {
     // calculate total base stats value
-    const total = stats.reduce(
-        (sum, stat) => sum + parseInt(stat.base_stat),
-        0
-    );
+    const total = stats.reduce((sum, current) => {
+        return sum + parseInt(current.base_stat );
+    }, 0);
 
     return (
         <div className="tab pokemon-base-stats">
@@ -48,7 +47,7 @@ function BaseStats({ stats }) {
                 </tbody>
             </table>
         </div>
-    );
+    )
 }
 
 export default BaseStats;

@@ -13,9 +13,9 @@ function Details({pokemon})
     const imageURL = sprites?.dream_world.front_default;
 
     // handle tab switching
-    const switchTab = (tab) => {
-        tab.preventDefault();
-        setTab(tab.target.dataset.tab);
+    const switchTab = (e) => {
+        e.preventDefault();
+        setTab(e.target.dataset.tab);
     }
 
     // return tab switch class name
