@@ -44,6 +44,7 @@
 .details-container .tabs-switch-container .tab-switch.active,
 .details-container .tabs-switch-container .tab-switch:hover {
     color: inherit;
+    cursor: pointer;
 }
 
 .details-container .tabs-switch-container .tab-switch.active::after 
