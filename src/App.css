@@ -95,11 +95,26 @@ body {
     background-color: #f9be00;
 }
 
+.type-flying {
+    background-color: #bab0d5;
+}
+
+.type-ghost {
+    background-color: #533c5c;
+}
+
+.type-steel {
+    background-color: #9d8ca4;
+}
+
+.type-dark {
+    background-color: #675417;
+}
+
 /* 
     Background Pokemon decoration
 */
-.bg-pokeball 
-{
+.bg-pokeball {
     position: absolute;
     display: flex;
     align-items: center;
