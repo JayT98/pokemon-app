@@ -1,19 +1,23 @@
 import React from "react";
 import "./PokemonCard.css";
 
-function PokemonCard({ pokemon: { name, id, sprites, types } }) {
-    // get pokemon image
-    const pokemonImage = sprites.other["official-artwork"].front_default;
+function PokemonCard({ pokemon: { name, id, sprites, types }, setSelectedPokemon }) {
+    // get pokemon image from URL
+    // const pokemonImage = sprites.other.dream_world.front_default || sprites.other['official-artwork'].front_default;
+    const baseURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other';
+    const pokemonImage = `${baseURL}//dream-world/${id}.svg`;
 
     // add css class for each pokemon type
-    const styleClass = types.map((t) => "type-" + t.type.name).join(" ");
+    const styleClass = types?.map((t) => "type-" + t.type.name).join(" ");
 
     // pad pokemon id with zeros
-    const pokemonId = "#" + id.toString().padStart(3, "0");
+    const pokemonId = "#" + (id ? id.toString().padStart(3, "0"):"");
 
     // render pokemon card
     return (
-        <div className="pokemonCard-container">
+        <div className="pokemonCard-container" onClick={()=>{
+            setSelectedPokemon(id - 1);
+        }}>
             <div className={`pokemonCard ${styleClass}`}>
                 <div className="bg-pokeball"></div>
                 <span className="pokemon-id">{pokemonId}</span>
@@ -21,7 +25,7 @@ function PokemonCard({ pokemon: { name, id, sprites, types } }) {
                     <h2>{name}</h2>
 
                     <div className="pokemon-types">
-                        {types.map((t, i) => {
+                        {types?.map((t,i) => {
                             return (
                                 <span className="type" key={i}>
                                     {t.type.name}

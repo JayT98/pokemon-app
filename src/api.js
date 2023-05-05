@@ -16,3 +16,12 @@ export const fetchPokemons = async (count = 151) => {
 export const fetchPokemonData = async (pokemonId) => {
     return apiCall(`pokemon/${pokemonId}`);
 };
+
+// Fetch pokemon evolutions
+export const fetchPokemonEvolutionsChain = async (pokemonId) => {
+    return apiCall(`pokemon-species/${pokemonId}`).then(
+        (data) => {
+            const newId = data.evolution_chain.url.match( /\/(\d+)\//)[1];
+            return apiCall(`evolution-chain/${newId}`);
+        }
+    )};

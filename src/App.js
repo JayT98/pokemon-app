@@ -3,11 +3,13 @@ import { fetchPokemonData, fetchPokemons } from "./api";
 
 import { Loader } from "./components/Loader";
 import { PokemonView } from "./components/PokemonView";
+import { DetailsView } from "./components/DetailsView";
 import "./App.css";
 
 function App() {
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedPokemon, setSelectedPokemon] = useState(-1);
 
     // load all pokemons on mount
     useEffect(() => {
@@ -24,10 +26,19 @@ function App() {
         fetchPokemons(151).then(async ({ results }) => {
             //iterate over each pokemon and add to array (Promise only working with results.map)
             await Promise.all(
-                results.map(async(pokemon) => {
+                results.map(async (pokemon, i) => {
                     // fetch pokemon data
                     await fetchPokemonData(pokemon.name).then(async (json) => {
-                        await setPokemons((prevState) => [...prevState, json]);
+                        // await setPokemons((prevState) => [
+                        //     ...prevState,
+                        //     i,
+                        //     json,
+                        // ]);
+                        await setPokemons(prevState => {
+                          let tmp = prevState.slice();
+                          tmp[i] = json;
+                          return tmp;
+                        })
                     });
                 })
             );
@@ -38,7 +49,20 @@ function App() {
     return (
         <div className="pokemon-app">
             <h1>Pokemon</h1>
-            {isLoading ? <Loader /> : <PokemonView pokemons={pokemons} />}
+            {
+                // if a pokemon is selected, show details view
+                selectedPokemon !== -1 && (
+                    <DetailsView pokemon={pokemons[selectedPokemon]} />
+                )
+            }
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <PokemonView
+                    pokemons={pokemons}
+                    setSelectedPokemon={setSelectedPokemon}
+                />
+            )}
         </div>
     );
 }
