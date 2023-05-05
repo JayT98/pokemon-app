@@ -34,7 +34,7 @@ function Details({pokemon})
             </div>
 
             {tab === 'about' && <About pokemon={pokemon} />}
-            {tab === 'base-stats' && <BaseStats pokemon={pokemon} />}
+            {tab === 'base-stats' && <BaseStats stats={pokemon.stats} />}
             {tab === 'evolution' && <Evolution pokemon={pokemon} />}
         </div>
     )

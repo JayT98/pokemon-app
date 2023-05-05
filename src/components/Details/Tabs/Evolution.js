@@ -1,59 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { fetchPokemonEvolutionsChain } from "../../../api";
+import { fetchPokemonEvolutionChain } from "../../../api";
 
 function Evolution({ pokemon }) {
-    const [currentEvolutions, setCurrentEvolutions] = useState([]);
+    const [currentEvolution, setCurrentEvolution] = useState([]);
     const [evolutionChain, setEvolutionChain] = useState([]);
 
     // load evolution chain on mount
     useEffect(() => {
-        fetchPokemonEvolutionsChain(
-            pokemon.id.then((data) => {
-                setCurrentEvolutions([]);
-                setEvolutionChain(data.chain);
-            })
-        );
+        fetchPokemonEvolutionChain(pokemon.id).then((data) => {
+            setEvolutionChain([]);
+            setCurrentEvolution(data.chain);
+        });
     }, [pokemon]);
 
     useEffect(() => {
-        getNextEvolutions();
-    });
+        getNextEvolution();
+    }, [currentEvolution]);
 
-    const getNextEvolutions = () => {
+    const getNextEvolution = () => {
         if (
-            currentEvolutions.length === 0 ||
-            currentEvolutions.evolves_to.length === 0
+            currentEvolution.length === 0 ||
+            currentEvolution.evolves_to.length === 0
         ) {
             return null;
         }
 
         // extract useful data from evolution chain
-        const current = currentEvolutions.species.name;
-        const next = currentEvolutions.evolves_to[0].species.name;
+        const current = currentEvolution.species.name;
+        const next = currentEvolution.evolves_to[0].species.name;
         const level =
-            currentEvolutions.evolves_to[0].evolution_details[0].min_level;
+            currentEvolution.evolves_to[0].evolution_details[0].min_level;
         const currentId =
-            currentEvolutions.id || extractId(currentEvolutions.species.url);
-        const nextId = extractId(currentEvolutions.evolves_to[0].species.url);
+            currentEvolution.id || extractId(currentEvolution.species.url);
+        const nextId = extractId(currentEvolution.evolves_to[0].species.url);
 
         // base URL for pokemon images
         const imageBaseURL =
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other';
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/";
 
         // get Image URL
         const currentImage = `${imageBaseURL}${currentId}.svg`;
         const nextImage = `${imageBaseURL}${nextId}.svg`;
 
         // set current evolution to next evolution
-        setCurrentEvolutions(currentEvolutions.evolves_to[0]);
+        setCurrentEvolution((prev) => prev.evolves_to[0]);
 
-        // pus new evolution to array
-        setEvolutionChain((prevState) => [
-            ...prevState,
+        // push new evolution to array
+        setEvolutionChain((prev) => [
+            ...prev,
             {
                 current,
                 next,
                 level,
+                currentId,
+                nextId,
                 currentImage,
                 nextImage,
             },
@@ -74,36 +74,30 @@ function Evolution({ pokemon }) {
 
             {
                 // iterate over evolution chain and display each evolution
-                evolutionChain.map((evolution, index) => {
+                evolutionChain.map((e, i) => {
                     return (
-                        <div className="evolution-container" key={index}>
-                            <div className="evolution-container evole-from">
+                        <div className="evolution-container" key={i}>
+                            <div className="evolution-container evolve-from">
                                 <div className="image-container">
                                     <div className="bg-pokeball"></div>
-                                    <img
-                                        alt={evolution.current}
-                                        src={evolution.currentImage}
-                                    />
+                                    <img alt={e.current} src={e.currentImage} />
                                 </div>
 
-                                <span>{evolution.current}</span>
+                                <span>{e.current}</span>
                             </div>
 
                             <div className="level-container">
                                 <div className="arrow"></div>
-                                Level {evolution.level}
+                                Level {e.level}
                             </div>
 
-                            <div className="evolution-container evole-to">
+                            <div className="evolution-container evolve-to">
                                 <div className="image-container">
                                     <div className="bg-pokeball"></div>
-                                    <img
-                                        alt={evolution.next}
-                                        src={evolution.nextImage}
-                                    />
+                                    <img alt={e.next} src={e.nextImage} />
                                 </div>
 
-                                <span>{evolution.next}</span>
+                                <span>{e.next}</span>
                             </div>
                         </div>
                     );
@@ -112,6 +106,5 @@ function Evolution({ pokemon }) {
         </div>
     );
 }
-
 
 export default Evolution;

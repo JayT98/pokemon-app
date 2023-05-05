@@ -18,7 +18,7 @@ export const fetchPokemonData = async (pokemonId) => {
 };
 
 // Fetch pokemon evolutions
-export const fetchPokemonEvolutionsChain = async (pokemonId) => {
+export const fetchPokemonEvolutionChain = (pokemonId) => {
     return apiCall(`pokemon-species/${pokemonId}`).then(
         (data) => {
             const newId = data.evolution_chain.url.match( /\/(\d+)\//)[1];

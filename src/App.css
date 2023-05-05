@@ -190,7 +190,7 @@ body {
     }
 }
 
-@keyframes fade-in{
+@keyframes fade-in {
     from {
         opacity: 0;
     }
@@ -199,11 +199,17 @@ body {
     }
 }
 
-@keyframes fade-out{
+@keyframes fade-out {
     from {
         opacity: 1;
     }
     to {
         opacity: 0;
+    }
+}
+
+@keyframes fill {
+    from {
+        width: 0;
     }
 }
