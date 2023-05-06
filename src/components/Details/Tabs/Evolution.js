@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { fetchPokemonEvolutionChain } from "../../../api";
+import { Loader } from "../../Loader";
 
 function Evolution({ pokemon }) {
     const [currentEvolution, setCurrentEvolution] = useState([]);
     const [evolutionChain, setEvolutionChain] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // map trigger name to display text
     // eslint-disable-next-line
     const triggerDisplayName = {
-        'level-up': 'Level',
-        'trade':   'Trade',
-        'use-item': 'Use',
+        "level-up": "Level",
+        trade: "Trade",
+        "use-item": "Use",
     };
 
     // load evolution chain on mount
     useEffect(() => {
+        setLoading(true);
         fetchPokemonEvolutionChain(pokemon.id).then((data) => {
             setEvolutionChain([]);
             setCurrentEvolution(data.chain);
+            setLoading(false);
         });
         // eslint-disable-next-line
     }, [pokemon]);
@@ -42,9 +46,11 @@ function Evolution({ pokemon }) {
         const nextId = extractId(currentEvolution.evolves_to[0].species.url);
         const details = currentEvolution.evolves_to[0].evolution_details[0];
         const trigger = triggerDisplayName[details.trigger.name];
-        const triggerValue = details.min_level || details.min_happiness 
-                            || details.item?.name.replace('-','') 
-                            || '';
+        const triggerValue =
+            details.min_level ||
+            details.min_happiness ||
+            details.item?.name.replace("-", "") ||
+            "";
 
         // base URL for pokemon images
         const imageBaseURL =
@@ -81,7 +87,10 @@ function Evolution({ pokemon }) {
     return (
         <div className="tab tab-evolution">
             <h2>Evolution Chain</h2>
-            {evolutionChain.length === 0 && (
+
+            {loading && <Loader />}
+
+            { !loading && evolutionChain.length === 0 && (
                 <div>This pokemon does not evolve.</div>
             )}
 

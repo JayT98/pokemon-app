@@ -180,6 +180,11 @@
     transform: rotate(45deg);
 }
 
+.details-container .tab-evolution .loader
+{
+    padding: 1em;
+}
+
 @media screen and (max-width: 500px) {
     .details-container .tabs-switch-container .tab-switch {
         padding: .5rem;
