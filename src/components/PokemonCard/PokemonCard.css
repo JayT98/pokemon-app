@@ -5,9 +5,9 @@
 }
 
 .pokemonCard{
-    background-color: rgba(0,0,0,0.1);
+    background-color: var(--color);
     color: #FFF;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 20px 0 var(--color);
     height: 100%;
     padding: 3rem 1rem 3rem 3rem;
     position: relative;
@@ -16,6 +16,13 @@
     justify-content: space-between;
     border-radius: 3rem;
     overflow: hidden;
+    will-change: box-shadow, transform;
+    transition: all .3s;
+}
+
+.pokemonCard:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px 6px var(--color);
 }
 
 .pokemonCard .pokemonCard-title{
