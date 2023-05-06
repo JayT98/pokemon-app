@@ -9,12 +9,12 @@ Node version: v18
 
 ## Results
 
-!["Preview Image"](./img/preview-0.png)
+!["Preview Image"](./image/preview-0.png)
 
 | <!--                                --> | <!--                                --> | <!--                                --> |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| !["Preview Image"](./image/preview-0.png) | !["Preview Image"](./image/preview-1.png) | !["Preview Image"](./image/preview-2.png) |
-| !["Preview Image"](./image/preview-3.png) |                                         |
+| !["Preview Image"](./image/preview-1.png) | !["Preview Image"](./image/preview-2.png) | !["Preview Image"](./image/preview-3.png) |   
+
 
 ## Available Scripts
 
