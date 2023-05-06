@@ -3,9 +3,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Details project
+
 A Pokemon website created using [PokeAPI](https://pokeapi.co/docs/v2)
 Node version: v18
 
+## Results
+
+!["Preview Image"](./img/preview-0.png)
+
+| <!--                                --> | <!--                                --> | <!--                                --> |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| !["Preview Image"](./image/preview-0.png) | !["Preview Image"](./image/preview-1.png) | !["Preview Image"](./image/preview-2.png) |
+| !["Preview Image"](./image/preview-3.png) |                                         |
 
 ## Available Scripts
 

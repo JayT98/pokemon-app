@@ -188,5 +188,10 @@
 @media screen and (max-width: 500px) {
     .details-container .tabs-switch-container .tab-switch {
         padding: .5rem;
+        font-size: .8rem;
+    }
+
+    .details-container .tab{
+        font-size: .8rem;
     }
 }
