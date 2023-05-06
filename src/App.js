@@ -48,7 +48,7 @@ function App() {
 
     return (
         <div className="pokemon-app">
-            <h1>Pokemon</h1>
+            <h1>Pok&#xE9;mon</h1>
             {
                 // if a pokemon is selected, show details view
                 selectedPokemon !== -1 && (
