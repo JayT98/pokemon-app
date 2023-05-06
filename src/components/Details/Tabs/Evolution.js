@@ -5,6 +5,14 @@ function Evolution({ pokemon }) {
     const [currentEvolution, setCurrentEvolution] = useState([]);
     const [evolutionChain, setEvolutionChain] = useState([]);
 
+    // map trigger name to display text
+    // eslint-disable-next-line
+    const triggerDisplayName = {
+        'level-up': 'Level',
+        'trade':   'Trade',
+        'use-item': 'Use',
+    };
+
     // load evolution chain on mount
     useEffect(() => {
         fetchPokemonEvolutionChain(pokemon.id).then((data) => {
@@ -30,11 +38,13 @@ function Evolution({ pokemon }) {
         // extract useful data from evolution chain
         const current = currentEvolution.species.name;
         const next = currentEvolution.evolves_to[0].species.name;
-        const level =
-            currentEvolution.evolves_to[0].evolution_details[0].min_level;
-        const currentId =
-            currentEvolution.id || extractId(currentEvolution.species.url);
+        const currentId = extractId(currentEvolution.species.url);
         const nextId = extractId(currentEvolution.evolves_to[0].species.url);
+        const details = currentEvolution.evolves_to[0].evolution_details[0];
+        const trigger = triggerDisplayName[details.trigger.name];
+        const triggerValue = details.min_level || details.min_happiness 
+                            || details.item?.name.replace('-','') 
+                            || '';
 
         // base URL for pokemon images
         const imageBaseURL =
@@ -53,7 +63,8 @@ function Evolution({ pokemon }) {
             {
                 current,
                 next,
-                level,
+                trigger,
+                triggerValue,
                 currentId,
                 nextId,
                 currentImage,
@@ -88,9 +99,9 @@ function Evolution({ pokemon }) {
                                 <span>{e.current}</span>
                             </div>
 
-                            <div className="level-container">
+                            <div className="trigger-container">
                                 <div className="arrow"></div>
-                                Level {e.level}
+                                {e.trigger} {e.triggerValue}
                             </div>
 
                             <div className="evolve-container evolve-to">

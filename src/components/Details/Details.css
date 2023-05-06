@@ -139,16 +139,18 @@
     z-index: 2;
 }
 
-.details-container .tab-evolution .evolution-container .level-container {
+.details-container .tab-evolution .evolution-container .trigger-container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
 }
 
-.details-container .tab-evolution .evolution-container .level-container .arrow {
+.details-container .tab-evolution .evolution-container .trigger-container .arrow {
     --color: #eee;
     --width: 3px;
     display: block;
@@ -162,7 +164,7 @@
 .details-container
     .tab-evolution
     .evolution-container
-    .level-container
+    .trigger-container
     .arrow::after {
     content: '';
     display: block;
