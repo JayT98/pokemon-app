@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Details project
+A Pokemon website created using [PokeAPI](https://pokeapi.co/docs/v2)
+Node version: v18
+
+
 ## Available Scripts
 
 In the project directory, you can run:
