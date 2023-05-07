@@ -1,18 +1,23 @@
-import React from 'react';
-import './PokemonView.css';
-import { PokemonCard } from '../PokemonCard';
+import React from "react";
+import "./PokemonView.css";
+import { PokemonCard } from "../PokemonCard";
+import { Navigation } from "../Navigation";
 
-function PokemonView({pokemons, setSelectedPokemon})
-{
+function PokemonView({ pokemons, setSelectedPokemon }) {
     return (
-        <div className="pokemon-view">
-            {pokemons.map((pokemon) => (
-                <PokemonCard key={pokemon.id} pokemon={pokemon} 
-                    setSelectedPokemon={setSelectedPokemon}
-                />
-            ))}
-        </div>
-    )
+        <>
+            <Navigation />
+            <div className="pokemon-view">
+                {pokemons.map((pokemon) => (
+                    <PokemonCard
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        setSelectedPokemon={setSelectedPokemon}
+                    />
+                ))}
+            </div>
+        </>
+    );
 }
 
 export default PokemonView;
