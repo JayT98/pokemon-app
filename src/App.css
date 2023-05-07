@@ -38,6 +38,13 @@ body {
     margin-left: -2em;
 }
 
+.pokemon-app > h1 > i {
+    display: inline-block;
+    height: .7em;
+    width: .7em;
+    background-image: url('./image/pokeball.svg');
+    background-repeat: no-repeat;
+}
 /* 
     Pokemon type colors
 */
