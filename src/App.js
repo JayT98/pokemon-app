@@ -4,6 +4,7 @@ import { fetchPokemonData, fetchPokemons } from "./api";
 import { Loader } from "./components/Loader";
 import { PokemonView } from "./components/PokemonView";
 import { DetailsView } from "./components/DetailsView";
+import { withRouter } from "./HOC";
 import "./App.css";
 
 function App() {
@@ -70,4 +71,4 @@ function App() {
     );
 }
 
-export default App;
+export default withRouter(App);
