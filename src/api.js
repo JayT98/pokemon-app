@@ -8,8 +8,8 @@ const apiCall = async (endpoint) => {
 };
 
 // get a list of pokemons
-export const fetchPokemons = async (count = 151) => {
-    return apiCall(`pokemon?limit=${count}`);
+export const fetchPokemons = async (limit = 151, offset = 0) => {
+    return apiCall(`pokemon?limit=${limit}&offset=${offset}`);
 };
 
 // fetch specific pokemon data
