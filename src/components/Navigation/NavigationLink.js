@@ -6,8 +6,9 @@ function NavigationLink(props) {
         <NavLink
             className="navigation-link"
             activeClassName="active"
-            {...props}
-        />
+            {...props}>
+            {props.children}
+        </NavLink>
     );
 }
 

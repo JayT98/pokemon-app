@@ -1,72 +1,32 @@
-import { useEffect, useState } from "react";
-import { fetchPokemonData, fetchPokemons } from "./api";
-
-import { Loader } from "./components/Loader";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { PokemonView } from "./components/PokemonView";
-import { DetailsView } from "./components/DetailsView";
 import { withRouter } from "./HOC";
+import generations from "./data/generations";
+import { Navigation } from "./components/Navigation";
 import "./App.css";
 
 function App() {
-    const [pokemons, setPokemons] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [selectedPokemon, setSelectedPokemon] = useState(-1);
-
-    // load all pokemons on mount
-    useEffect(() => {
-        fillPokemonsArray();
-    }, []);
-
-    // fetch all pokemons and push to pokemons array
-    const fillPokemonsArray = () => {
-        // set loading state and rest pokemons array
-        setIsLoading(true);
-        setPokemons([]);
-
-        //fetch first original 151 pokemons
-        fetchPokemons(151).then(async ({ results }) => {
-            //iterate over each pokemon and add to array (Promise only working with results.map)
-            await Promise.all(
-                results.map(async (pokemon, i) => {
-                    // fetch pokemon data
-                    await fetchPokemonData(pokemon.name).then(async (json) => {
-                        // await setPokemons((prevState) => [
-                        //     ...prevState,
-                        //     i,
-                        //     json,
-                        // ]);
-                        await setPokemons((prevState) => {
-                            let tmp = prevState.slice();
-                            tmp[i] = json;
-                            return tmp;
-                        });
-                    });
-                })
-            );
-            setIsLoading(false);
-        });
-    };
-
     return (
         <div className="pokemon-app">
-            <h1>P<i></i>k&#xE9;mon</h1>
-            {
-                // if a pokemon is selected, show details view
-                selectedPokemon !== -1 && (
-                    <DetailsView
-                        pokemon={pokemons[selectedPokemon]}
-                        setSelectedPokemon={setSelectedPokemon}
-                    />
-                )
-            }
-            {isLoading ? (
-                <Loader />
-            ) : (
-                <PokemonView
-                    pokemons={pokemons}
-                    setSelectedPokemon={setSelectedPokemon}
+            <h1>
+                P<i></i>k&#xE9;mon
+            </h1>
+
+            <Navigation />
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Navigate to={generations[0].link} />}
                 />
-            )}
+
+                {generations.map((generation, i) => (
+                    <Route
+                        key={i}
+                        path={'/' + generation.link}
+                        element={<PokemonView generation={generation} />}
+                    />
+                ))}
+            </Routes>
         </div>
     );
 }
