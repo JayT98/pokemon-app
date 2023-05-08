@@ -15,6 +15,7 @@ function PokemonView({ generation }) {
     // load all pokemons on mount & generation change
     useEffect(() => {
         fillPokemonsArray();
+        // eslint-disable-next-line
     }, [generation]);
 
     // fetch all pokemons and push to pokemons array
