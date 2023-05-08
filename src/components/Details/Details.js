@@ -9,7 +9,7 @@ function Details({ pokemon, setPokemonData})
     const [tab, setTab] = useState('about');
 
     // get pokemon image from URL
-    const imageURL = pokemon.sprites.other.dream_world.front_default;
+    const imageURL = pokemon.sprites.other.dream_world.front_default ||  pokemon.sprites.other['official-artwork'].front_default;
 
     // handle tab switching
     const switchTab = (e) => {
