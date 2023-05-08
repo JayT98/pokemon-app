@@ -19,7 +19,7 @@ function PokemonCard({ pokemon: { name, id, sprites, types }, onClick}) {
                 <div className="bg-pokeball"></div>
                 <span className="pokemon-id">{pokemonId}</span>
                 <div className="pokemonCard-title">
-                    <h2>{name.replace('-',' ')}</h2>
+                    <h2>{name.replace(/-/g,' ')}</h2>
 
                     <div className="pokemon-types">
                         {types.map((t,i) => {

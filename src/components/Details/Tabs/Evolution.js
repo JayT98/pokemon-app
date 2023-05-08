@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchPokemonEvolutionChain } from "../../../api";
+import { fetchPokemonEvolutionChain, fetchPokemonData } from "../../../api";
 import { Loader } from "../../Loader";
 
-function Evolution({ pokemon }) {
+function Evolution({ pokemon, changePokemon }) {
     const [currentEvolution, setCurrentEvolution] = useState([]);
     const [evolutionChain, setEvolutionChain] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ function Evolution({ pokemon }) {
     // eslint-disable-next-line
     const triggerDisplayName = {
         "level-up": "Level",
-        trade: "Trade",
+        "trade": "Trade",
         "use-item": "Use",
     };
 
@@ -84,6 +84,20 @@ function Evolution({ pokemon }) {
         return url.match(/\/(\d+)\//)[1];
     };
 
+    // fetch pokemon data from evolution chain and show its details
+    const fetchPokemon = (name) => {
+        if(!name || pokemon.name === name) {
+            return;
+        }
+        
+        // get pokemon data && show it
+        setLoading(true);
+        fetchPokemonData(name).then((data) => {
+            changePokemon(data);
+        });
+
+    }
+
     return (
         <div className="tab tab-evolution">
             <h2>Evolution Chain</h2>
@@ -94,13 +108,14 @@ function Evolution({ pokemon }) {
                 <div>This pokemon does not evolve.</div>
             )}
 
-            {
+            { !loading &&
                 // iterate over evolution chain and display each evolution
                 evolutionChain.map((e, i) => {
                     return (
                         <div className="evolution-container" key={i}>
                             <div className="evolve-container evolve-from">
-                                <div className="image-container">
+                                <div className="image-container" onClick={()=>{fetchPokemon(e.current)
+                                }}>
                                     <div className="bg-pokeball"></div>
                                     <img alt={e.current} src={e.currentImage} />
                                 </div>
@@ -113,7 +128,7 @@ function Evolution({ pokemon }) {
                                 {e.trigger} {e.triggerValue}
                             </div>
 
-                            <div className="evolve-container evolve-to">
+                            <div className="evolve-container evolve-to" onClick={()=>{fetchPokemon(e.next);}}>
                                 <div className="image-container">
                                     <div className="bg-pokeball"></div>
                                     <img alt={e.next} src={e.nextImage} />

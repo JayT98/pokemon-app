@@ -4,7 +4,7 @@ import BaseStats from './Tabs/BaseStats';
 import Evolution from './Tabs/Evolution';
 import './Details.css';
 
-function Details({ pokemon })
+function Details({ pokemon, setPokemonData})
 {
     const [tab, setTab] = useState('about');
 
@@ -22,6 +22,12 @@ function Details({ pokemon })
         return `tab-switch ${tab === tabName ? 'active' : ''}`;
     }
 
+    // Change Pokemon data & go to first tab
+    const changePokemon = (pokemon) => {
+        setPokemonData(pokemon);
+        setTab('about');
+    }
+
     return (
         <div className="details-container">
             <img src={imageURL} className='pokemon-image' alt={pokemon.name} />
@@ -34,7 +40,7 @@ function Details({ pokemon })
 
             {tab === 'about' && <About pokemon={pokemon} />}
             {tab === 'base-stats' && <BaseStats stats={pokemon.stats} />}
-            {tab === 'evolution' && <Evolution pokemon={pokemon} />}
+            {tab === 'evolution' && <Evolution pokemon={pokemon} changePokemon={changePokemon}/>}
         </div>
     )
 }

@@ -6,9 +6,11 @@ import { BackButton } from "../BackButton";
 import { Overlay } from "../Overlay";
 import "./DetailsView.css";
 
-function DetailsView({ pokemon, setSelectedPokemon }) {
+function DetailsView({pokemon, setSelectedPokemon }) {
     const detailsViewRef = useRef(null);
     const [isHideOverlay, setIsHideOverlay] = useState(false);
+    const [pokemonData, setPokemonData] = useState(pokemon);
+
 
     useEffect(() => {
         document.body.classList.add("no-scroll");
@@ -27,13 +29,18 @@ function DetailsView({ pokemon, setSelectedPokemon }) {
         }, 500);
     };
 
+    // set pokemon data from evolution chain
+    const setPokemonDatas = (data) => {
+        setPokemonData(data);
+    };
+
     return ReactDOM.createPortal(
         <div>
             <Overlay hidden={isHideOverlay} onClick={handleBackClick} />,
             <div className="details-view-container shown" ref={detailsViewRef}>
                 <BackButton onClick={handleBackClick} />
-                <PokemonCard pokemon={pokemon} />
-                <Details pokemon={pokemon} />
+                <PokemonCard pokemon={pokemonData} />
+                <Details pokemon={pokemonData} setPokemonData={setPokemonDatas} />
             </div>
         </div>,
         document.body
