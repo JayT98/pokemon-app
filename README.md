@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Details project
 
 A Pokemon website created using [PokeAPI](https://pokeapi.co/docs/v2)
+
 Node version: v18
 
 ## Results
@@ -13,7 +14,9 @@ Node version: v18
 
 | <!--                                --> | <!--                                --> | <!--                                --> |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| !["Preview Image"](./image/preview-1.png) | !["Preview Image"](./image/preview-2.png) | !["Preview Image"](./image/preview-3.png) |   
+| !["Preview Image"](./image/preview-1.png) | !["Preview Image"](./image/preview-2.png) | !["Preview Image"](./image/preview-3.png) | 
+| !["Preview Image"](./image/preview-4.png) | !["Preview Image"](./image/preview-5.png) | 
+
 
 
 ## Available Scripts
