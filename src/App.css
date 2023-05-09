@@ -171,6 +171,48 @@ body {
     background-color: currentColor;
 }
 
+.searchContainer {
+    display: flex;
+    width: 18rem;
+    height: 4rem;
+    background-color: #FFF;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .2);
+    border-radius: 100rem;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto 4rem; 
+}
+
+.searchButton{
+    width: 18rem;
+    height: 4rem;
+    background-color: #42dcff;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.6rem;
+    border-radius: 100rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+.searchButton:hover,
+.searchButton:active,
+.searchButton:focus
+{
+    outline: none;
+    background-color: #fb6c6c;
+}
+
+.searchButton.active
+{
+    transform: scaleX(1); 
+    opacity: 1;
+    background-color: #fb6c6c;
+}
+
 /* 
     Animations
 */

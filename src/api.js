@@ -19,9 +19,15 @@ export const fetchPokemonData = async (pokemonId) => {
 
 // Fetch pokemon evolutions
 export const fetchPokemonEvolutionChain = (pokemonId) => {
-    return apiCall(`pokemon-species/${pokemonId}`).then(
-        (data) => {
-            const newId = data.evolution_chain.url.match( /\/(\d+)\//)[1];
-            return apiCall(`evolution-chain/${newId}`);
-        }
-    )};
+    return apiCall(`pokemon-species/${pokemonId}`).then((data) => {
+        const newId = data.evolution_chain.url.match(/\/(\d+)\//)[1];
+        return apiCall(`evolution-chain/${newId}`);
+    });
+};
+
+// Searching a pokemon
+// fetch all pokemons
+export const fetchPokemonsByName = async ( count = 900 ) => {
+
+    return apiCall( `pokemon?limit=${ count }` );
+};
